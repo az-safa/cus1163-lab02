@@ -1,0 +1,25 @@
+1. How many system calls does each method make?
+  Method 1 (System Calls)
+      This method makes a system call for every chunk of data
+      There’ll be many read lines in trace.txt if the file is large and if the buffer is small
+  Method 2 (Library Functions
+      This method makes few calls.
+      Even if you call fgets() ten times in your code, the library will usually perform only one large read to fill its internal buffer
+      
+2. What's the difference between fopen() and open()?
+  open()
+      This is a direct system call 
+      It asks the kernel to provide a file descriptor
+      It provides no buffering
+      It is a raw interface to the filesystem
+  fopen()
+      This is a library function that wraps around open()
+      It creates a FILE object that handles buffering 
+      This makes it easier to read data line-by-line or character-by-character
+      
+3. Why does the library method make different system calls?
+  The library method is designed for efficiency
+      Switching from "User Mode" to "Kernel Mode" is extensive for the CPU. 
+      Reading a large block of data once into a buffer lets the library minimizes the switches
+            Easier on the CPU
+  
